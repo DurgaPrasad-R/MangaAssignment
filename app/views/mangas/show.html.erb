@@ -1,0 +1,10 @@
+<h1><%= @manga.title %></h1>
+<p><%= @manga.author %></p>
+<p><%= @manga.description %></p>
+<p><%= @manga.published_date %></p>
+
+<% if @manga.cover_image.present? %>
+  <%= image_tag Cloudinary::Utils.cloudinary_url(@manga.cover_image) %>
+<% else %>
+  <p>No cover image available.</p>
+<% end %>
