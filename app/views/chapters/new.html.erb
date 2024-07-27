@@ -1,0 +1,17 @@
+<%= form_with(model: [@manga, @chapter], local: true, html: { multipart: true }) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.number_field :number %>
+  </div>
+  <div class="field">
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

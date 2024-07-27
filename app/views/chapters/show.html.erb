@@ -1,0 +1,18 @@
+<p>
+  <strong>Title:</strong>
+  <%= @chapter.title %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @chapter.number %>
+</p>
+
+<% if @chapter.image_urls.any? %>
+  <h2>Images:</h2>
+  <% @chapter.cloudinary_image_urls.each do |url| %>
+    <%= image_tag url, alt: "Chapter Image" %>
+  <% end %>
+<% else %>
+  <p>No images available.</p>
+<% end %>

@@ -1,10 +1,12 @@
-
 <% if @manga.cover_image.present? %>
   <%= image_tag Cloudinary::Utils.cloudinary_url(@manga.cover_image) %>
 <% else %>
   <p>No cover image available.</p>
 <% end %>
+
 <h1><%= @manga.title %></h1>
 <p><%= @manga.author %></p>
 <p><%= @manga.description %></p>
 <p><%= @manga.published_date %></p>
+
+<%= link_to 'Add New Chapter', new_manga_chapter_path(@manga), class: 'btn btn-primary' %>

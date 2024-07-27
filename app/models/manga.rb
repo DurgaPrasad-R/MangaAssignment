@@ -1,5 +1,6 @@
 class Manga < ApplicationRecord
   belongs_to :user
+  has_many :chapters, dependent: :destroy
 
   # Validations
   validates :title, presence: true
