@@ -1,2 +1,19 @@
 <h1>Mangas</h1>
-<%= link_to 'New Manga', new_manga_path %>
+<%= link_to 'New Manga', new_manga_path, class: 'btn btn-primary mb-3' %>
+<h1>All Mangas</h1>
+
+<div class="d-flex flex-wrap gap-5">
+  <% @mangas.each do |manga| %>
+    <div class:"card mb-4" style="max-width: 12rem;">
+        <div class="border">
+            <%= image_tag Cloudinary::Utils.cloudinary_url(manga.cover_image), class: "card-img-top" %>
+        </div>
+        <div class="" style="margin:5px 5px">
+            <h5 class="card-text"><%= link_to manga.title, manga_path(manga) %></h5>
+            <p class="card-text" style="padding: 0px;margin-bottom:0px;"><strong>Author:</strong> <%= manga.author %></p>
+            <p class="card-text" style="padding: 0px;margin-bottom:0px;"><strong>Description:</strong> <%= manga.description %></p>
+            <p class="card-text" style="padding: 0px;margin-bottom:0px;"><small><strong>Published Date:</strong> <%= manga.published_date %></small></p>
+        </div>
+    </div>
+  <% end %>
+</div>
