@@ -29,11 +29,14 @@ class ChaptersController < ApplicationController
 
   def show
     @chapter = Chapter.find(params[:id])
+    @manga = Manga.find(params[:manga_id])
+    @images = Kaminari.paginate_array(@chapter.cloudinary_image_urls.reverse).page(params[:page]).per(1)
   end
 
   private
 
   def chapter_params
-    params.require(:chapter).permit(:title, :number, :manga_id)
+    params.require(:chapter).permit(:title, :number, images: [])
   end
+  
 end

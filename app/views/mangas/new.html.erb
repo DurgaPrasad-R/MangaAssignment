@@ -35,9 +35,14 @@
     <%= form.file_field :cover_image %>
   </div>
 
-  <div class="field">
+  <div class="field" style="display:none;">
     <%= form.label :user_id %>
     <%= form.collection_select :user_id, User.all, :id, :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :categories %><br>
+    <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true } %>
   </div>
 
   <div class="actions">

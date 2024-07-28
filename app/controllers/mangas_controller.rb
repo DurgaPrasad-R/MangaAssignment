@@ -1,6 +1,10 @@
 class MangasController < ApplicationController
   def index
-    @mangas = Manga.all
+    @mangas = if params[:search].present?
+                Manga.search(params[:search])
+              else
+                Manga.all
+              end
   end
   def new
     @manga = Manga.new
@@ -23,11 +27,13 @@ class MangasController < ApplicationController
 
   def show
     @manga = Manga.find(params[:id])
+    @ratings = @manga.ratings || []
+    @comments = @manga.comments || []
   end
 
   private
 
   def manga_params
-    params.require(:manga).permit(:title, :author, :description, :published_date, :user_id, :cover_image)
+    params.require(:manga).permit(:title, :author, :description, :published_date, :user_id, :cover_image, category_ids: [])
   end
 end

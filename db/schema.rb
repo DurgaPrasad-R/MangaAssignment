@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_27_165504) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_28_111308) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -46,6 +46,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_27_165504) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_mangas", id: false, force: :cascade do |t|
+    t.integer "manga_id", null: false
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_categories_mangas_on_category_id"
+    t.index ["manga_id"], name: "index_categories_mangas_on_manga_id"
+  end
+
   create_table "chapters", force: :cascade do |t|
     t.integer "manga_id", null: false
     t.string "title", null: false
@@ -55,6 +68,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_27_165504) do
     t.json "image_urls", default: []
     t.index ["manga_id"], name: "index_chapters_on_manga_id"
     t.index ["number"], name: "index_chapters_on_number", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "manga_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manga_id"], name: "index_comments_on_manga_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -79,6 +102,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_27_165504) do
     t.index ["user_id"], name: "index_mangas_on_user_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "manga_id", null: false
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manga_id"], name: "index_ratings_on_manga_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -94,6 +127,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_27_165504) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chapters", "mangas"
+  add_foreign_key "comments", "mangas"
+  add_foreign_key "comments", "users"
   add_foreign_key "images", "chapters"
   add_foreign_key "mangas", "users"
+  add_foreign_key "ratings", "mangas"
+  add_foreign_key "ratings", "users"
 end

@@ -5,6 +5,9 @@ ruby "3.3.4"
 # User Authentication
 gem "devise"
 
+# Pagination Library
+gem 'kaminari'
+
 # Cloudinary Setup
 gem 'cloudinary'
 gem 'carrierwave'

@@ -1,18 +1,16 @@
+<%= link_to 'Back to Manga Details', manga_path(@manga), class: 'btn btn-secondary' %>
 <p>
   <strong>Title:</strong>
   <%= @chapter.title %>
 </p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @chapter.number %>
-</p>
-
-<% if @chapter.image_urls.any? %>
-  <h2>Images:</h2>
-  <% @chapter.cloudinary_image_urls.each do |url| %>
-    <%= image_tag url, alt: "Chapter Image" %>
+<% if @images.any? %>
+  <% @images.each do |url| %>
+    <%= image_tag url, alt: "Chapter Image", style: "display: block; max-width: 80%; margin: 0 auto; height: auto;" %>
   <% end %>
+
+  <div style="display:flex;justify-content:center;margin-top:10px;">
+    <%= paginate @images %>
+  </div>
 <% else %>
   <p>No images available.</p>
 <% end %>
