@@ -1,4 +1,6 @@
 class MangasController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
+  before_action :check_admin, only: [:new, :create]
   def index
     @mangas = if params[:search].present?
                 Manga.search(params[:search])
