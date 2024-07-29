@@ -1,7 +1,7 @@
-<%= form_with(model: @manga, local: true, html: { multipart: true }) do |form| %>
+<%= form_with(model: @manga, local: true, html: { multipart: true, class: "needs-validation",style: "display: block; max-width: 80%; margin: 0 auto; height: auto;", novalidate: true }) do |form| %>
   <% if @manga.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@manga.errors.count, "error") %> prohibited this manga from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(@manga.errors.count, "error") %> prohibited this manga from being saved:</h4>
       <ul>
         <% @manga.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,42 +10,42 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.label :title, class: "form-label fw-bold" %>
+    <%= form.text_field :title, class: "form-control", required: true, placeholder: "Enter the manga title" %>
   </div>
 
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author %>
+  <div class="form-group">
+    <%= form.label :author, class: "form-label fw-bold" %>
+    <%= form.text_field :author, class: "form-control", required: true, placeholder: "Enter the author's name" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :description, class: "form-label fw-bold" %>
+    <%= form.text_area :description, class: "form-control", rows: 5, required: true, placeholder: "Enter a description for the manga" %>
   </div>
 
-  <div class="field">
-    <%= form.label :published_date %>
-    <%= form.date_select :published_date %>
+  <div class="field my-3">
+    <%= form.label :published_date, class:"fw-bold" %>
+    <%= form.date_select :published_date, { start_year: 1900, end_year: Date.today.year } %>
   </div>
 
-  <div class="field">
-    <%= form.label :cover_image %>
-    <%= form.file_field :cover_image %>
+  <div class="form-group">
+    <%= form.label :cover_image, class: "form-label fw-bold" %>
+    <%= form.file_field :cover_image, class: "form-control-file" %>
   </div>
 
-  <div class="field" style="display:none;">
-    <%= form.label :user_id %>
-    <%= form.collection_select :user_id, User.all, :id, :email %>
+  <div class="form-group" style="display:none;">
+    <%= form.label :user_id, class: "form-label fw-bold" %>
+    <%= form.collection_select :user_id, User.all, :id, :email, {}, { class: "form-control" } %>
   </div>
 
-  <div class="field">
-    <%= form.label :categories %><br>
-    <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true } %>
+  <div class="form-group">
+    <%= form.label :categories, class: "form-label fw-bold" %><br>
+    <%= form.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true, class: "form-control" } %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions d-flex justify-content-center m-3">
+    <%= form.submit "Save Manga", class: "btn btn-primary fw-bold" %>
   </div>
 <% end %>

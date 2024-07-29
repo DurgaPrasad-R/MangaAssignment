@@ -1,17 +1,21 @@
-<%= form_with(model: [@manga, @chapter], local: true, html: { multipart: true }) do |form| %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<%= form_with(model: [@manga, @chapter], local: true, html: { multipart: true, class: "needs-validation",style: "display: block; max-width: 80%; margin: 60px auto; height: auto;", novalidate: true }) do |form| %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true, placeholder: "Enter chapter title" %>
   </div>
-  <div class="field">
-    <%= form.label :number %>
-    <%= form.number_field :number %>
+
+  <div class="mb-3">
+    <%= form.label :number, class: "form-label" %>
+    <%= form.number_field :number, class: "form-control", required: true, placeholder: "Enter chapter number" %>
   </div>
-  <div class="field">
-    <%= form.label :images %>
-    <%= form.file_field :images, multiple: true %>
+
+  <div class="mb-3">
+    <%= form.label :images, class: "form-label" %>
+    <%= form.file_field :images, multiple: true, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= form.submit %>
+
+  <div class="mb-3">
+    <%= form.submit "Save Chapter", class: "btn btn-primary" %>
+    <%= link_to 'Back', manga_path(@manga), class: 'btn btn-secondary float-end' %>
   </div>
 <% end %>

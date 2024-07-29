@@ -1,8 +1,7 @@
-<%= link_to 'Back to Manga Details', manga_path(@manga), class: 'btn btn-secondary' %>
-<p>
-  <strong>Title:</strong>
-  <%= @chapter.title %>
-</p>
+<div class="d-flex align-items-center justify-content-between mx-5 my-2">
+  <h4 class="fw-bold"><%= @chapter.title %></h4>
+  <%= link_to 'Back to Manga Details', manga_path(@manga), class: 'btn btn-secondary' %>
+</div>
 <% if @images.any? %>
   <% @images.each do |url| %>
     <%= image_tag url, alt: "Chapter Image", style: "display: block; max-width: 80%; margin: 0 auto; height: auto;" %>

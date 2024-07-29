@@ -1,4 +1,5 @@
 class ChaptersController < ApplicationController
+  before_action :authenticate_user!
   def new
     @manga = Manga.find(params[:manga_id])
     @chapter = @manga.chapters.build

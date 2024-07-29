@@ -26,7 +26,7 @@
     <p class="m-0 p-0"><small>Published Date:</small></p>
     <p class="m-0 p-0"><small><%= @manga.published_date %></small></p>
   </div>
-  <%= link_to 'Add New Chapter', new_manga_chapter_path(@manga), class: 'btn btn-primary' %>
+  <%= link_to 'Add New Chapter', new_manga_chapter_path(@manga), class: 'btn btn-primary mt-3' %>
   </div>
 </div>
   <p class="fw-bold m-0 p-0">Brief Description:</p>
@@ -47,34 +47,36 @@
     <p>No chapters available.</p>
   <% end %>
 
-<h2>Ratings</h2>
+
 <% @manga.ratings.each do |rating| %>
   <p><strong>Unknown:</strong> <%= rating.rating %> stars</p>
 <% end %>
 
 <% unless @manga.ratings.exists?(user: current_user) %>
   <h3>Submit Your Rating</h3>
-  <%= form_with model: [@manga, Rating.new], url: manga_ratings_path(@manga), method: :post, local: true do |f| %>
-    <%= f.label :rating, "Your Rating (1-5):" %>
-    <%= f.number_field :rating, in: 1..5 %>
-    <%= f.submit "Submit Rating" %>
+  <%= form_with model: [@manga, Rating.new], url: manga_ratings_path(@manga), method: :post, local: true, html: { class: "needs-validation", novalidate: true } do |f| %>
+    <div class="form-group">
+      <%= f.number_field :rating, in: 1..5, class: "form-control", required: true, placeholder: "Enter a rating between 1 and 5" %>
+    </div>
+    <%= f.submit "Submit Rating", class: "btn btn-primary mb-3 mt-1" %>
   <% end %>
 <% else %>
   <p>You have already rated this manga.</p>
 <% end %>
 
 
-<h2>Comments</h2>
+
 <% @manga.comments.each do |comment| %>
   <p><strong>Unknown:</strong> <%= comment.content %></p>
 <% end %>
 
 <% unless @manga.comments.exists?(user: current_user) %>
   <h3>Leave a Comment</h3>
-  <%= form_with model: [@manga, Comment.new], url: manga_comments_path(@manga), method: :post, local: true do |f| %>
-    <%= f.label :content, "Your Comment:" %>
-    <%= f.text_area :content %>
-    <%= f.submit "Submit Comment" %>
+  <%= form_with model: [@manga, Comment.new], url: manga_comments_path(@manga), method: :post, local: true, html: { class: "needs-validation", novalidate: true } do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, class: "form-control", rows: 5, placeholder: "Write your comment here...", required: true %>
+    </div>
+    <%= f.submit "Submit Comment", class: "btn btn-primary mt-1 mb-3" %>
   <% end %>
 <% else %>
   <p>You have already commented on this manga.</p>
