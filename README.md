@@ -60,42 +60,41 @@ The manga creation form allows admins to add new manga entries to the system. Th
 
 Whenever an admin clicks on adding a new chapter. He will have to fill up a form with the title of the chapter and the images of that chapter. There can be any number of images.
 
-### Features
+## Features
 
-[x] **User Authentication:**
+- [x] **User Authentication:**
 
-- User registration and login
-- Admin and user roles
+  - User registration and login
+  - Admin and user roles
 
-[x] **Manga Management:**
+- [x] **Manga Management:**
 
-- Admins can create and manage mangas
-- Users can view manga details
+  - Admins can create and manage mangas
+  - Users can view manga details
 
-[x] **Chapter Management:**
+- [x] **Chapter Management:**
 
-- Admins can add and manage chapters for each manga
-- Users can read chapters in a paginated manner
+  - Admins can add and manage chapters for each manga
+  - Users can read chapters in a paginated manner
 
-[x] **Ratings and Comments:**
+- [x] **Ratings and Comments:**
 
-- Users can rate and comment on mangas
+  - Users can rate and comment on mangas
 
-[x] **Design:**
+- [x] **Design:**
 
-- User Friendly and navigatable application.
+  - User-friendly and navigable application
 
-[x] **Search:**
+- [x] **Search:**
 
-- Users can search for mangas
+  - Users can search for mangas
 
-[x] **Paginated Reading:**
+- [x] **Paginated Reading:**
 
-- Chapters are displayed in a paginated manner
+  - Chapters are displayed in a paginated manner
 
-[x] **Image Management:**
-
-- Manga and chapter images are managed through Cloudinary
+- [x] **Image Management:**
+  - Manga and chapter images are managed through Cloudinary
 
 ### Setting up the project
 
