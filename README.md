@@ -5,6 +5,7 @@
 The Manga Aggregator Application is a comprehensive platform built using Ruby on Rails. It allows users to explore and manage a collection of manga series, offering functionalities such as reading, rating, and commenting on manga. The application is designed with two distinct user personas: Admin and User.
 
 **Live Demo:** You can access the live version of the application at [Manga Aggregator Live](https://mysite-4aoq.onrender.com/).
+
 **Sample Admin Details:**
 
 ```
