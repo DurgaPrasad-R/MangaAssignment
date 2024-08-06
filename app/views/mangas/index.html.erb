@@ -17,7 +17,7 @@
             <% if manga.cover_image.present? %>
               <%= image_tag Cloudinary::Utils.cloudinary_url(manga.cover_image), class: "card-img-top" %>
             <% else %>
-              <%= image_tag 'placeholder_image_url', class: "card-img-top" %>
+              <%= image_tag 'https://res.cloudinary.com/dnwd10wxm/image/upload/v1722320407/sniexsvns7laufleyfor.jpg', class: "card-img-top" %>
             <% end %>
           </div>
           <div class="" style="margin:5px 5px">
