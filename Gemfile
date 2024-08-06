@@ -72,6 +72,8 @@ group :development do
   # gem "spring"
 end
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 group :production do
   gem 'pg', '~> 1.5', '>= 1.5.6'
 end
